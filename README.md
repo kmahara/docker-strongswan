@@ -1,4 +1,4 @@
-== How to
+## How to
 
 ```
 vi etc/ipsec.conf
