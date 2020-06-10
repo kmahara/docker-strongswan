@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  vpn:
+    build: ./docker
+    container_name: vpn
+    environment:
+      TZ: "Asia/Tokyo"
+      LANG: "ja_JP.UTF-8"
+    privileged: true
+    volumes:
+    - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    - ./etc/ipsec.conf:/etc/strongswan/ipsec.conf
+    - ./etc/cert.env:/etc/strongswan/cert.env
+    - ./etc/ipsec.secrets:/etc/strongswan/ipsec.secrets
+    - ./etc/log.conf:/etc/strongswan/strongswan.d/log.conf
+    - ./etc/ipsec.d:/etc/strongswan/ipsec.d
+    ports:
+    - "500:500/udp"
+    - "4500:4500/udp"
